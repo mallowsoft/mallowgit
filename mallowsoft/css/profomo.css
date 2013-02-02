@@ -1,0 +1,503 @@
+@charset "UTF-8";
+
+/* Body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+    background: #444444;
+    color: #e7e7e7;
+	position: relative;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+#logo {
+    text-align: center;
+    margin: 10px 0 7px 0;
+}
+
+/* Main Background */
+#outerbox {
+	min-width: 1500px;
+    margin:30px 30px 60px 30px;
+    background: #bbbbbb;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px black;
+}
+
+/* Menu */
+#menubox {
+    border-bottom: 1px solid #a7a7a7;
+    background:#bfc2c3;
+    border-radius:5px 5px 0px 0px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cfcfcf), color-stop(100%,#a7a7a7)); /* webkit */
+	background: -moz-linear-gradient(top, #cfcfcf 0%, #a7a7a7 100%); /* firefox */
+    background: -o-linear-gradient(#cfcfcf, #a7a7a7); /* opera */
+//    height: 72px;
+}
+#menu {
+    display: table-row;
+}
+
+.userimage {
+    display: table-row;
+}
+.userimage img {
+    height: 125px;
+    padding: 5px 5px 5px 5px;
+}
+.title {
+    display: table-cell;
+    width: 2750px;
+    text-align: center;
+    font-size: 22px;
+    color: #677985;
+    vertical-align: middle;
+}
+.name {
+    font-weight: bold;
+    font-size: 30px;
+}
+.menuicons {
+    display: table-cell;
+    cursor:pointer;
+}
+.menuicons img{
+    width: 72px;
+    height:72px;
+}
+
+
+
+
+
+
+.title img {
+    
+}
+
+.menuicons.active {
+    background: #e0e0e0;
+    //box-shadow: inset 0 1px 3px #727272;
+}
+
+//#menu ul li a
+//{
+//	color:#ffffff;
+//	background-color:transparent;
+//	font-size:12px;
+//	font-weight:bold;
+//	text-decoration:none;
+//	padding:5px 8px;
+//}
+//
+//#menu ul li a:hover, #menu ul li.active a
+//{
+//	color: #6399cd;
+//	background-color:#EFF4FA;
+//	text-decoration:none;
+//}
+
+/*content box*/
+#contentbox
+{
+    min-height:450px;
+    height: 410px;
+    display:table-row;
+    background: green;
+}
+#sidemenu
+{
+    width:75px;
+    display:table-cell;
+    background: black;
+}
+#sidemenu img
+{
+    width: 72px;
+    height: 72px;
+}
+#listbox
+{
+    width: 100%;
+   display:table-cell;
+    background:#f2f2f2;
+   vertical-align: top;
+}
+#titlebar
+{
+    background:#ffffff;
+    padding: 15px;
+    box-shadow: 0 1px 3px #727272;
+}
+.listtitle
+{
+    font-size:22px;
+    text-align:left;
+    color:#000000;
+    width:2750px;
+    display:table-cell;
+    font-weight: bold;
+}
+
+#tablebox
+{
+    background:#f2f2f2;
+}
+#footerbox
+{
+    background:#bfc2c3;
+    border-radius:0 0 5px 5px;
+    border-top: 1px solid #a6a6a6;
+    height:25px;
+}
+#table
+{
+    background:white;
+    margin:20px;
+    border:1px solid #cdcdcd;
+}
+#entriesheader {
+    background:#bbbbbb;
+    color: white;
+    font-size: 17px;
+    //font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+#entries {
+    border-top: 1px solid #f1f0f0;
+    color: #444444;
+    font-size: 17px;
+    padding: 10px;
+}
+#entries:hover {
+    background: #e6e6e6;
+}
+#entries a
+{
+    color:black;
+    text-decoration: none;
+}
+#entriesbox {
+    background: white;
+}
+#entriesrow {
+    display: table-row;
+}
+.serial {
+    display: table-cell;
+    width: 60px;
+    max-width: 60px;
+    text-align: center;
+}
+.date {
+    display: table-cell;
+    width: 190px;
+    max-width: 190px;
+    text-align: center;
+}
+.date a
+{
+    cursor:pointer;
+}
+#emptycell
+{
+    display:table-cell;
+    width:200px;
+}
+.form label,.note
+{
+    color:black;
+}
+.form input
+{
+    color:black;
+    font-size:13px;
+    width:210px;
+    height:20px;
+    border-radius:5px;
+    border:1px solid #a7a7a7;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    margin-bottom:10px;
+    margin-left:10px;
+}
+.form textarea
+{
+    color:black;
+    width:210px;
+    font-size:13px;
+    border-radius:15px;
+    border:1px solid #a7a7a7;
+    margin-bottom:10px;
+    margin-left:10px;
+    
+}
+.form input:focus,
+.form textarea:focus
+{
+    outline:none;
+}
+.row
+{
+    font-size:13px;
+    display:table-row;
+}
+#formtext
+{
+    display:table-cell;
+    text-align:right;
+    width:200px;
+    font-size:13px;
+    color:black;
+}
+#field
+{
+    width:230px;
+    display:table-cell;
+}
+#customerrow
+{
+   display:table-row;
+    border-bottom:1px solid black;
+}
+#customer_cell
+{
+    display:table-cell;
+    width:400px;
+}
+#customercell
+{
+    display:table-cell;
+    width:400px;
+}
+#deliverycell
+{
+    display:table-row;
+    padding-left:20px;
+}
+#submitmenu
+{
+    background:white;
+    border-bottom:1px solid white;
+    padding: 15px 15px 5px 15px;
+    box-shadow: 0 -1px 3px #b4b4b4;
+}
+#submitmenu input
+{
+    color:white;
+    font-size:16px;
+    width:160px;
+    border-radius:20px;
+    height:30px;
+    border:0;
+    background:#0092c9;
+    cursor:pointer;
+}
+.login_button input
+{
+    color:white;
+    font-size:14px;
+    width:140px;
+    height:25px;
+    margin:20px 20px 0px 250px;
+    border-radius:20px;
+    border:0;
+    background:#0092c9;
+    cursor:pointer;
+    text-align:center;
+    font-weight: bold;
+}
+.createbutton,
+.deletebutton,
+.cancelbutton
+{
+    display:table-cell;
+}
+.createbutton input,
+.deletebutton input
+{
+    color:white;
+    font-size:14px;
+    width:170px;
+    padding: 5px 10px;
+    border-radius:20px;
+    border:0;
+    background:#0092c9;
+    cursor:pointer;
+    text-align:center;
+    font-weight: bold;
+}
+#submitmenu .cancelbutton input
+{
+    color:white;
+    font-size:14px;
+    width:170px;
+    padding: 5px 10px;
+    border-radius:20px;
+    border:0;
+    background:#bbbbbb;
+    cursor:pointer;
+    text-align:center;
+    font-weight: bold;
+}
+.space
+{
+    font-size:15px;
+    text-align:left;
+    color:black;
+    width:2750px;
+    display:table-cell;
+}
+.required
+{
+    color:red;
+}
+#content
+{
+    color:black;
+}
+#emptyrowcurrency
+{
+    height:320px;
+}
+#emptyrowagent
+{
+    height:145px;
+}
+#emptyrowdelivery
+{
+    height:200px;
+}
+#emptyrowpayment
+{
+    height:200px;
+}
+.row_buttons
+{
+    padding-left:30px;
+}
+/* create form*/
+#wrapper {
+ 	text-align: left;
+	min-width: 1400px;
+}
+#row,
+#fpc_row,
+#exchange_row
+{
+  	border-top: 1px solid white;
+  	border-bottom: 1px solid #dddddd;
+}
+#titleback {
+	background: #bbbbbb;
+  	color: white;
+  	border-top: 1px solid white;
+  	border-bottom: 1px solid #969696;
+ 	text-align: center;
+    padding: 3px;
+}
+#row label,
+#fpc_row label,
+#exchange_row label
+{
+	margin-left: 20px;
+  	color: #737373;
+  	width: 170px;
+  	display: inline-block;
+  	text-align: right;
+    font-size: 13px;
+    vertical-align: middle;
+}
+#row input,
+#fpc_row input,
+#exchange_row input,
+#row textarea
+{
+  	min-width: 14%;
+	margin: 8px 20px 8px 5px;
+  	padding: 3px 8px;
+  	border-radius: 15px;
+  	border: 1px solid #c3c3c3;
+    font-size: 14px;
+}
+#row select
+{
+
+    width:218px;
+    margin: 8px 30px 8px 15px;
+}
+#row [type="radio"]
+{
+	width: 14px;
+    margin: 12px -15px 12px 15px;
+    background: grey;
+    vertical-align: middle;
+}
+#row textarea {
+    height:80px;
+    vertical-align: middle;
+  	padding: 6px 8px;
+}
+#row .radiotext
+{
+    color:black;
+    text-align:left;
+    width:20px;
+}
+#row #port {
+    min-width: 14%;
+	margin: 8px 20px 8px 5px;
+  	padding: 3px 8px;
+  	border-radius: 15px;
+  	border: 1px solid #c3c3c3;
+    font-size: 14px;
+    height:15px;
+    vertical-align: middle;
+  	padding: 6px 8px;
+}
+#row input:focus,
+#fpc_row input:focus,
+#exchange_row input:focus,
+#row textarea:focus {
+	outline: none;
+  	background: #b0e3f8;
+  	color: #057291;
+  	border: 1px solid #057291;
+}
+#row .error,
+#fpc_row .error,
+#exchange_row .error
+{
+    color:red;
+}
+#loginrow input
+{
+    min-width: 14%;
+	margin: 8px 20px 8px 5px;
+  	padding: 3px 8px;
+  	border-radius: 15px;
+    font-size: 14px;
+    background: #bbbbbb;
+}
+#proforma_view_row {
+    display: table-row;
+}
+.proforma_view_cell {
+    display: table-cell;
+    border-right: 1px solid #dbdada;
+    border-bottom: 1px solid #dbdada;
+    border-left: 1px solid white;
+//    border-top: 1px solid white;
+  	color: #737373;
+    padding: 10px;
+    font-size: 15px;
+    width: 380px;
+}
+.proforma_view_digits {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    margin: 10px 20px;
+    text-align: center;
+}
