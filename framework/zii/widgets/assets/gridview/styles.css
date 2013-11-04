@@ -5,128 +5,142 @@
 
 .grid-view
 {
-	padding: 15px 0;
+	padding: 25px 25px 10px 25px;
+    margin-bottom: 5px;
+}
+.grid-view table
+{
+    background: white;
+    border: 1px solid #bbbbbb;
+    margin-bottom: 20px;
 }
 
 .grid-view table.items
 {
-	background: white;
-	border-collapse: collapse;
+    border-collapse: collapse;
 	width: 100%;
-	border: 1px #D0E3EF solid;
 }
 .grid-view table.items th, .grid-view table.items td
 {
-	font-size: 0.9em;
-	border: 1px white solid;
-	padding: 0.3em;
+	font-size: 17px;
+    border-top: 1px solid #f1f0f0;
+	padding: 4px 10px;
+    color: #000000;
+    height:30px;
+    text-align: center;
+}
+#currency-grid_c0
+{
+    color:white;
+}
+#customer-grid_c0
+{
+    color:white;
+}
+#agent-grid_c0
+{
+    color:white;
+}
+#delivery-terms-grid_c0
+{
+    color:white;
+}
+#payment-terms-grid_c0
+{
+    color:white;
+}
+#proforma-invoice-grid_c0
+{
+    color:white;
+}
+#units-grid_c0
+{
+    color:white;
+}
+#sales-invoice-grid_c0
+{
+    color:white;
+}
+.grid-view table.items td a
+{
+    color:black;
+    text-decoration:none;
 }
 .grid-view table.items th
 {
-	color: white;
-	background: url("bg.gif") repeat-x scroll left top white;
-	text-align: center;
+    color: #b02e2e;
+    background: #bbbbbb;
+    font-weight: normal;
 }
 .grid-view table.items th a
 {
-	color: #EEE;
-	font-weight: bold;
+	color: white;
+	font-weight: normal;
 	text-decoration: none;
+    //letter-spacing: 1px;
 }
-
 .grid-view table.items th a:hover
 {
-	color: #FFF;
+	color: #616161;
 }
-.grid-view table.items header a:hover
-{
-	color: #FFF;
-}
-
 .grid-view table.items th a.asc
 {
 	background:url(up.gif) right center no-repeat;
 	padding-right: 10px;
 }
-
 .grid-view table.items th a.desc
 {
 	background:url(down.gif) right center no-repeat;
 	padding-right: 10px;
 }
-
-.grid-view table.items tr.even
+.grid-view table.items tr
 {
-	background: #F8F8F8;
+	//background: white;
+    
 }
-
-.grid-view table.items tr.odd
-{
-	background: #E5F1F4;
-}
-
 .grid-view table.items tr.selected
 {
-	background: #BCE774;
+	//background: green;
 }
 .grid-view table.items tr:hover.selected
 {
-	background: #CCFF66;
+	//background: #CCFF66;
 }
 .grid-view table.items tbody tr:hover
 {
-	background: #ECFBD4;
+	background: #e6e6e6;
 }
 .grid-view .link-column img
 {
 	border: 0;
 }
-
 .grid-view .button-column
 {
 	text-align: center;
 	width: 60px;
-    color:green;
 }
-.grid-view .header
-{
-	text-align: left;
-	width: 60px;
-}
+
 .grid-view .button-column img
 {
 	border: 0;
 }
-
-.grid-view .checkbox-column
-{
-	width: 15px;
-}
-
 .grid-view .summary
 {
 	margin: 0 0 5px 0;
 	text-align: right;
+    font-size: 11px;
 }
-
 .grid-view .pager
 {
 	margin: 5px 0 0 0;
 	text-align: right;
 }
-
 .grid-view .empty
 {
 	font-style: italic;
 }
-
-.grid-view .filters input,
-.grid-view .filters select
+.grid-view table.items .header
 {
-	width: 100%;
-	border: 1px solid #ccc;
-}
-#button-column
-{
-    color:green;
+    text-decoration:none;
+    color:white;
 }

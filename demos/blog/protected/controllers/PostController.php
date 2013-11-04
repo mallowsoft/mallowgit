@@ -214,5 +214,3 @@ class PostController extends Controller
 		return $comment;
 	}
 }
-    
-?>

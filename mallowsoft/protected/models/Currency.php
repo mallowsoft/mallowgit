@@ -37,6 +37,7 @@ class Currency extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('currency_name,currency_symbol', 'required','message'=>'{attribute} Cannnot be Empty'),
 			array('currency_name, currency_symbol, currency_code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -62,9 +63,9 @@ class Currency extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'currency_name' => 'Currency Name',
-			'currency_symbol' => 'Currency Symbol',
-			'currency_code' => 'Currency Code',
+			'currency_name' => 'Currency Name :',
+			'currency_symbol' => 'Currency Symbol :',
+			'currency_code' => 'Currency Code :',
 			'currency_id' => 'Currency',
 		);
 	}
@@ -87,6 +88,13 @@ class Currency extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort' => array(
+                            'defaultOrder' => 'currency_name ASC',  // this is it.
+                            ),
+            'pagination' => array(
+                                  'pageSize' => 10,
+                                  ),
+            
 		));
 	}
 }

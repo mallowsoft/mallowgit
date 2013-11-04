@@ -1,4 +1,6 @@
 <?php
+    header('content-type:text/html;charset=utf-8');
+
 /**
 * JSON (JavaScript Object Notation) is a lightweight data-interchange
 * format. It is easy for humans to read and write. It is easy for machines
@@ -84,6 +86,8 @@ class CJSON
 	* Marker constant for JSON::decode(), used to flag stack state
 	*/
 	const JSON_IN_CMT = 16;
+    
+    const JSON_HEX_TAG  =16;
 
 	/**
 	 * Encodes an arbitrary variable into JSON format
@@ -109,11 +113,13 @@ class CJSON
 				return str_replace(',','.',(float)$var); // locale-independent representation
 
 			case 'string':
-				if (($enc=strtoupper(Yii::app()->charset))!=='UTF-8')
-					$var=iconv($enc, 'UTF-8', $var);
+//				if (($enc=strtoupper(Yii::app()->charset))!=='UTF-8')
+//					$var=iconv($enc, 'UTF-8', $var);
 
 				if(function_exists('json_encode'))
-					return json_encode($var);
+                {
+                        return json_encode($var);
+                }
 
 				// STRINGS ARE EXPECTED TO BE IN ASCII OR UTF-8 FORMAT
 				$ascii = '';
@@ -123,11 +129,12 @@ class CJSON
 				* Iterate over every character in the string,
 				* escaping with a slash or encoding to UTF-8 where necessary
 				*/
-				for ($c = 0; $c < $strlen_var; ++$c) {
-
+				for ($c = 0; $c < $strlen_var; ++$c)
+                {
 					$ord_var_c = ord($var{$c});
 
-					switch (true) {
+					switch (true)
+                    {
 						case $ord_var_c == 0x08:
 							$ascii .= '\b';
 							break;
@@ -239,7 +246,8 @@ class CJSON
 				*/
 
 				// treat as a JSON object
-				if (is_array($var) && count($var) && (array_keys($var) !== range(0, sizeof($var) - 1))) {
+				if (is_array($var) && count($var) && (array_keys($var) !== range(0, sizeof($var) - 1)))
+                {
 					return '{' .
 						   join(',', array_map(array('CJSON', 'nameValue'),
 											   array_keys($var),
@@ -248,6 +256,7 @@ class CJSON
 				}
 
 				// treat it like a regular array
+                //echo $var[2]['brand_id'];
 				return '[' . join(',', array_map(array('CJSON', 'encode'), $var)) . ']';
 
 			case 'object':
@@ -259,11 +268,11 @@ class CJSON
 				}
 				else
 					$vars = get_object_vars($var);
-				return '{' .
+				return 
 					   join(',', array_map(array('CJSON', 'nameValue'),
 										   array_keys($vars),
 										   array_values($vars)))
-					   . '}';
+					   ;
 
 			default:
 				return '';
@@ -281,7 +290,12 @@ class CJSON
 	 */
 	protected static function nameValue($name, $value)
 	{
-		return self::encode(strval($name)) . ':' . self::encode($value);
+        if($name == 'brand_image' || $name == 'item_image')
+            return self::encode(strval($name)) . ':' . stripslashes(self::encode($value));
+//        elseif($name == 'brand_name')
+//            return self::encode(strval($name)) . ':' . $value;
+        else
+            return self::encode(strval($name)) . ':' . self::encode($value);
 	}
 
 	/**

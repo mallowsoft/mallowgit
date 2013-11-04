@@ -15,13 +15,24 @@ class UserIdentity extends CUserIdentity
 	 * against some persistent user identity storage (e.g. database).
 	 * @return boolean whether authentication succeeds.
 	 */
-//	public function authenticate()
-//	{
-//		$users=array(
-//			// username => password
-//			'demo'=>'demo',
-//			'admin'=>'admin',
+    
+    public $_id;
+    public $userid;
+    
+    // DEFAULT AUTHENTICATION
+	public function authenticate()
+	{
+//		$users=array
+//        (
+//    // username => password
+//	//		'demo'=>'demo',
+//	//		'admin'=>'admin',
 //		);
+      //  echo $this->username;
+      //  echo $this->password;
+        $user = UserTable::model()->find('username=:username',array(':username'=>$this->username));
+       // $user=UserTable::model()->find('LOWER(username)=?',array(strtolower($this->username)));
+   //     echo $user->password;
 //		if(!isset($users[$this->username]))
 //			$this->errorCode=self::ERROR_USERNAME_INVALID;
 //		elseif($users[$this->username]!==$this->password)
@@ -29,27 +40,40 @@ class UserIdentity extends CUserIdentity
 //		else
 //			$this->errorCode=self::ERROR_NONE;
 //		return !$this->errorCode;
-//	}
+    //    echo $this->password;
+        
+        
+        if($user == null)
+			$this->errorCode=self::ERROR_USERNAME_INVALID;
+		else if(crypt($this->password,$user->password) != $user->password)
+        {
+          //  echo "well";
+			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+        }
+		else
+		{
+			$this->_id=$user->id;
+			$this->userid=$user->id;
+			//$this->username=$user->username;
+			$this->errorCode=self::ERROR_NONE;
+		}
+		return $this->errorCode == self::ERROR_NONE;
+    }
+    public function getId()
+	{
+		return $this->_id;
+	}
+    /* ldap
     public function authenticate()
 	{
-//        $options = Yii::app()->params['ldap'];
-        
-
     $ldap_host = "server.local";
     $ldap_dn = "uid=".$this->username.",cn=users,dc=server,dc=local";
     $ldap = ldap_connect($ldap_host) or die("could not connect to".$ldap_host);
+    ldap_set_option( $ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
 
-//    $dc_string = "dc=" . implode(",dc=",$options['dc']);
-        
-    
-//    $connection = ldap_connect($options['host'] or die ("error in connecting ldap server"));
-        ldap_set_option( $ldap, LDAP_OPT_PROTOCOL_VERSION, 3 );
-//    ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
-    
     if($ldap)
     {
         $bind= @ldap_bind($ldap,$ldap_dn, $this->password);
-
         if(!$bind)
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         else
@@ -57,6 +81,6 @@ class UserIdentity extends CUserIdentity
     }
     return !$this->errorCode;
     }
+  */
 }
-    
 ?>

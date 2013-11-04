@@ -22,7 +22,7 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('username, password', 'required'),
+			array('username, password', 'required','message'=>'{attribute} Cannnot be Empty'),
 			// rememberMe needs to be a boolean
 			array('rememberMe', 'boolean'),
 			// password needs to be authenticated
@@ -75,3 +75,4 @@ class LoginForm extends CFormModel
 			return false;
 	}
 }
+?>

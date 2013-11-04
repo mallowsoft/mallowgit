@@ -82,3 +82,4 @@ class CJuiSortable extends CJuiWidget
 		echo CHtml::closeTag($this->tagName);
 	}
 }
+?>

@@ -200,4 +200,3 @@ class Post extends CActiveRecord
 		));
 	}
 }
-?>

@@ -39,7 +39,7 @@ class Profomo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('order_no', 'required'),
+			array('order_no,profomo_date,customer', 'required'),
 			array('order_no, serial', 'numerical', 'integerOnly'=>true),
 			array('profomo_date, customer, profomo_no, fpc_booked', 'safe'),
 			// The following rule is used by search().

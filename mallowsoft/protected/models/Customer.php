@@ -52,14 +52,12 @@ class Customer extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('customer_code', 'required'),
-			array('delivery_phone,customer_code_id, phone_primary, phone_alternative', 'numerical', 'integerOnly'=>true),
-			array('customer_code, customer_name, invoicing_address, city, country, phone_primary, phone_alternative, email, destination_port, delivery_address, delivery_city, delivery_country, delivery_phone, delivery_email,currency_id,delivery_terms_id,payment_terms_id', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('customer_code, customer_name, invoicing_address, city, country, phone_primary, phone_alternative, email, destination_port, delivery_address, delivery_city, delivery_country, delivery_phone, delivery_email, customer_code_id, currency_id, agent_id, payment_terms_id, delivery_terms_id', 'safe', 'on'=>'search'),
-             array('email', 'email','checkMX'=>true),
-             array('delivery_email', 'email','checkMX'=>true),
+            array('customer_code, customer_name', 'required','message'=>'{attribute} Cannnot be Empty'),
+                     array('email,delivery_email', 'email'),
+            array('phone_primary,delivery_phone,pincode,delivery_pincode,phone_alternative,delivery_terms_id,payment_terms_id,currency_id,agent_id,email,delivery_email','default','setOnEmpty'=>true),
+			array('customer_code, customer_name, invoicing_address, pincode ,sameadd , delivery_pincode, city, country, email, destination_port, delivery_address, delivery_city, delivery_country, delivery_phone,sameadd', 'safe'),
+            
+          //  array('delivery_email', 'email'),
 		);
 	}
 
@@ -71,7 +69,7 @@ class Customer extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-       // 'currency'=>array(self::BELONGS_TO, 'Currency', 'currency_id'),
+//        'currency'=>array(self::BELONGS_TO, 'Currency', 'currency_id'),
                     );
 	}
 
@@ -81,25 +79,27 @@ class Customer extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'customer_code' => 'Customer Code',
-			'customer_name' => 'Customer Name',
-			'invoicing_address' => 'Invoicing Address',
-			'city' => 'City',
-			'country' => 'Country',
-			'phone_primary' => 'Phone Primary',
-			'phone_alternative' => 'Phone Alternative',
-			'email' => 'Email',
-			'destination_port' => 'Destination Port',
-			'delivery_address' => 'Delivery Address',
-			'delivery_city' => 'Delivery City',
-			'delivery_country' => 'Delivery Country',
-			'delivery_phone' => 'Delivery Phone',
-			'delivery_email' => 'Delivery Email',
-			'customer_code_id' => 'Customer Code',
-			'currency_id' => 'Currency',
-			'agent_id' => 'Agent',
-			'payment_terms_id' => 'Payment Terms',
-			'delivery_terms_id' => 'Delivery Terms',
+			'customer_code' => 'Customer Code :',
+			'customer_name' => 'Customer Name :',
+			'invoicing_address' => 'Invoicing Address :',
+			'city' => 'City :',
+			'country' => 'Country :',
+			'phone_primary' => 'Phone (Primary) :',
+			'phone_alternative' => 'Phone (Alternative) :',
+			'email' => 'Email :',
+			'destination_port' => 'Destination Port :',
+			'delivery_address' => 'Delivery Address :',
+			'delivery_city' => 'City :',
+			'delivery_country' => 'Country :',
+			'delivery_phone' => 'Phone :',
+			'delivery_email' => 'Email :',
+			'customer_code_id' => 'Customer Code :',
+			'currency_id' => 'Currency :',
+			'agent_id' => 'Agent :',
+			'payment_terms_id' => 'Payment Terms :',
+			'delivery_terms_id' => 'Delivery Terms :',
+            'pincode' => 'Pincode :',
+            'delivery_pincode' => 'Pincode :',
 		);
 	}
 
@@ -119,6 +119,7 @@ class Customer extends CActiveRecord
 		$criteria->compare('invoicing_address',$this->invoicing_address,true);
 		$criteria->compare('city',$this->city,true);
 		$criteria->compare('country',$this->country,true);
+        $criteria->compare('pincode',$this->country,true);
 		$criteria->compare('phone_primary',$this->phone_primary,true);
 		$criteria->compare('phone_alternative',$this->phone_alternative,true);
 		$criteria->compare('email',$this->email,true);
@@ -126,6 +127,7 @@ class Customer extends CActiveRecord
 		$criteria->compare('delivery_address',$this->delivery_address,true);
 		$criteria->compare('delivery_city',$this->delivery_city,true);
 		$criteria->compare('delivery_country',$this->delivery_country,true);
+        $criteria->compare('delivery_pincode',$this->delivery_country,true);
 		$criteria->compare('delivery_phone',$this->delivery_phone,true);
 		$criteria->compare('delivery_email',$this->delivery_email,true);
 		$criteria->compare('customer_code_id',$this->customer_code_id,true);
@@ -136,6 +138,12 @@ class Customer extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort' => array(
+                            'defaultOrder' => 'customer_name ASC',  // this is it.
+                            ),
+            'pagination' => array(
+                                  'pageSize' => 10,
+                                  ),
 		));
 	}
 }

@@ -36,6 +36,7 @@ class Units extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                     array('unit_code,unit_name', 'required','message'=>'{attribute} Cannnot be Empty'),
 			array('unit_name, unit_code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -60,8 +61,8 @@ class Units extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'unit_name' => 'Unit Name',
-			'unit_code' => 'Unit Code',
+			'unit_name' => 'Unit Name :',
+			'unit_code' => 'Unit Code :',
 			'unit_id' => 'Unit',
 		);
 	}
@@ -83,6 +84,12 @@ class Units extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort' => array(
+                            'defaultOrder' => 'unit_name ASC',  // this is it.
+                            ),
+            'pagination' => array(
+                                  'pageSize' => 10,
+                                  ),
 		));
 	}
 }

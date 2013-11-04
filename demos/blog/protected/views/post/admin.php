@@ -28,5 +28,4 @@ $this->breadcrumbs=array(
 			'class'=>'CButtonColumn',
 		),
 	),
-));
-?>
+)); ?>

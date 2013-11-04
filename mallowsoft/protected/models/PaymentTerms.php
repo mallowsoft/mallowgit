@@ -37,6 +37,7 @@ class PaymentTerms extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('payment_terms, payment_terms_code', 'required','message'=>'{attribute} Cannnot be Empty'),
 			array('information, payment_terms, payment_terms_code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -61,10 +62,10 @@ class PaymentTerms extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'information' => 'Information',
-			'payment_terms' => 'Payment Terms',
-			'payment_terms_code' => 'Payment Terms Code',
-			'payment_terms_id' => 'Payment Terms',
+			'information' => 'Information :',
+			'payment_terms' => 'Payment Terms :',
+			'payment_terms_code' => 'Payment Terms Code :',
+			'payment_terms_id' => 'Payment Terms :',
 		);
 	}
 
@@ -86,6 +87,12 @@ class PaymentTerms extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort' => array(
+                            'defaultOrder' => 'payment_terms_code ASC',  // this is it.
+                            ),
+            'pagination' => array(
+                                  'pageSize' => 10,
+                                  ),
 		));
 	}
 }

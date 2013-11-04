@@ -5,43 +5,73 @@
 
 
 <div id="titlebar">
-<div class="listtitle">Sales Invoice Details</div>
-<div class="createbutton"><a href="../salesInvoice/create"><input type="button" id="createbutton" value="Create New"></a></div>
+<div class="listtitle">Sales Invoice List</div>
 </div>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
+<?php $this->renderPartial('../salesInvoice/_search',array(
                                            'model'=>$model,
                                            )); ?>
 </div><!-- search-form -->
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php
+    date_default_timezone_set('UTC');
+    $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'sales-invoice-grid',
 	'dataProvider'=>$model->search(),
 	'columns'=>array(
-    array(
-         'name'=>'S_No',
+     array(
+         'header'=>'S.No',
+         'headerHtmlOptions' => array('style'=>'color:white'),
          'value'=>'$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',
           ),
-    array(
-           'name'  => 'production_order_no',
+     array(
+           'header'  => 'Order No',
+          'headerHtmlOptions' => array('style'=>'color:white'),
            'value' => 'CHtml::link($data->production_order_no, Yii::app()->createUrl("salesInvoice/update",array("id"=>$data->primaryKey)))',
            'type'  => 'raw',
            ),
-        'invoice_no',
-		'invoice_date',
      array(
-           'name'  => 'quantity',
-           'value' => 'CHtml::link($data->quantity$data->unit, Yii::app()->createUrl("proformaInvoice/view",array("id"=>$data->primaryKey)))',
+           'header'  => 'Invoice No',
+           'headerHtmlOptions' => array('style'=>'color:white'),
+           'value' => 'CHtml::link($data->invoice_no, Yii::app()->createUrl("salesInvoice/update",array("id"=>$data->primaryKey)))',
+           'type'  => 'raw',
+           ),
+     array(
+           'header'  => 'Date',
+           'headerHtmlOptions' => array('style'=>'color:white'),
+           'value' => 'CHtml::link(Yii::app()->dateFormatter->format("dd-MM-y",strtotime($data->invoice_date)), Yii::app()->createUrl("salesInvoice/update",array("id"=>$data->primaryKey)))',
            'type'  => 'raw',
            ),
 
-        'fc_value',
+     array(
+           'header'  => 'Customer',
+           'headerHtmlOptions' => array('style'=>'color:white'),
+           'value' => 'CHtml::link($data->customer, Yii::app()->createUrl("salesInvoice/update",array("id"=>$data->primaryKey)))',
+           'type'  => 'raw',
+           ),
+     array(
+           'header'  => 'FC Value',
+           'headerHtmlOptions' => array('style'=>'color:white'),
+           'value' => 'CHtml::link($data->currency_symbol." ".$data->fc_value, Yii::app()->createUrl("salesInvoice/update",array("id"=>$data->primaryKey)))',
+           'type'  => 'raw',
+           ),
+     array(
+           'header'  => 'Ex Rate',
+           'headerHtmlOptions' => array('style'=>'color:white'),
+           'value' => 'CHtml::link($data->ex_rate, Yii::app()->createUrl("salesInvoice/update",array("id"=>$data->primaryKey)))',
+           'type'  => 'raw',
+           ),
+     array(
+           'header'  => 'INR Value',
+           'headerHtmlOptions' => array('style'=>'color:white'),
+           'value' => 'CHtml::link($data->fc_value * $data->ex_rate, Yii::app()->createUrl("salesInvoice/update",array("id"=>$data->primaryKey)))',
+           'type'  => 'raw',
+           ),
 		/*
-        'customer',
-         'weight',
-         'unit',
+        'unit',
 		'currency',
-		'Ex_rate',
-		'inr_value',
+         
+        'weight',
+        'quantity',
 		'payment_due_date',
 		'bank_ref_no',
 		'payment_date',
@@ -66,5 +96,8 @@
 			'class'=>'CButtonColumn',
 		),
 	),
+    'summaryText'=>'',
+    'htmlOptions'=>array('style'=>'cursor: pointer;'),
+    'selectionChanged'=>"function(order){window.location='" . Yii::app()->createUrl('salesInvoice/update', array('id'=>$model->invoice_id)) . "' + $.fn.yiiGridView.getSelection(order);}",
 ));
 ?>

@@ -45,3 +45,4 @@ class SiteTest extends WebTestCase
 		$this->assertTextPresent('Login');
 	}
 }
+?>

@@ -17,32 +17,37 @@
 ?>
 
 <div id="titlebar">
-<div class="listtitle">Agent Details</div>
+<div class="listtitle">Agents List</div>
 <div class="createbutton"><a href="../agent/create"><input type="button" id="createbutton" value="Create New"></a></div>
 </div>
 
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
-                                           'model'=>$model,
-                                           )); ?>
+                                           'model'=>$model,                                    ));
+?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php
+$this->widget('zii.widgets.grid.CGridView', array(
 'id'=>'agent-grid',
 'dataProvider'=>$model->search(),
 'columns'=>array(
                  array('header'=>'S.No',
-                       'value'=>'++$row',
+                       'headerHtmlOptions' => array('style'=>'color:white'),
+                       'value'=>'$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',
                        ),
                  array(
-                       'name'  => 'agent_code',
-                       'value' => 'CHtml::link($data->agent_code, Yii::app()->createUrl("agent/update",array("id"=>$data->agent_id)))',
+                       'header'=>'Agent Code',
+                       'name'=>'agent_code',
+                       'value' => 'CHtml::link($data->agent_code, Yii::app()->createUrl("agent/update",array("id"=>$data->primaryKey)))',
+                       'headerHtmlOptions' => array('style'=>'color:white'),
                        'type'  => 'raw',
                        ),
-                 
                  array(
-                       'name'  => 'agent_name',
+                       'header'=>'Agent Name',
+                       'name'=>'agent_name',
                        'value' => 'CHtml::link($data->agent_name, Yii::app()->createUrl("agent/update",array("id"=>$data->primaryKey)))',
+                       'headerHtmlOptions' => array('style'=>'color:white'),
                        'type'  => 'raw',
                        ),
                  /*
@@ -50,7 +55,6 @@
                   'city',
                   'country',
                   'phone_primary',
-                  
                   'phone_alternative',
                   'email',
                   */
@@ -58,6 +62,9 @@
                        'class'=>'CButtonColumn',
                        ),
                  ),
+                'summaryText' => '',
+                'htmlOptions'=>array('style'=>'cursor: pointer;'),
+                'selectionChanged'=>"function(id){window.location='" . Yii::app()->createUrl('agent/update', array('id'=>$model->primaryKey)) . "' + $.fn.yiiGridView.getSelection(id);}",
 ));
 ?>
 

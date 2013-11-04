@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Database schema required by CDbAuthManager.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>

@@ -16,7 +16,7 @@ $('.search-form form').submit(function(){
 ?>
 
 <div id="titlebar">
-<div class="listtitle">Payment Terms </div>
+<div class="listtitle">Payment terms List</div>
 <div class="createbutton"><a href="../paymentTerms/create"><input type="button" id="createbutton" value="Create New"></a></div>
 </div>
 <div class="search-form" style="display:none">
@@ -30,20 +30,31 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'columns'=>array(
                      array('header'=>'S.No',
-                           'value'=>'++$row',
-                           ),
+                           'headerHtmlOptions' => array('style'=>'color:white'),
+                           'value'=>'$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',                           ),
                      array(
-                           'name'  => 'payment_terms_code',
+                           'header'  => 'Payment Terms Code',
+                           'headerHtmlOptions' => array('style'=>'color:white'),
                            'value' => 'CHtml::link($data->payment_terms_code, Yii::app()->createUrl("paymentTerms/update",array("id"=>$data->primaryKey)))',
                            'type'  => 'raw',
                            ),
-                    'payment_terms',
-                    'information',
+                     array(
+                           'header'  => 'Payment Terms',
+                           'headerHtmlOptions' => array('style'=>'color:white'),
+                           'value' => 'CHtml::link($data->payment_terms, Yii::app()->createUrl("paymentTerms/update",array("id"=>$data->primaryKey)))',
+                           'type'  => 'raw',
+                           ),
+                    
                      /*
+                      'information',
                     'payment_terms_id',
                       */
                     array(
                         'class'=>'CButtonColumn',
                     ),
-	),
+                ),
+                'summaryText' => '',
+                'htmlOptions'=>array('style'=>'cursor: pointer;'),
+                'selectionChanged'=>"function(id){window.location='" . Yii::app()->createUrl('paymentTerms/update', array('id'=>$model->primaryKey)) . "' + $.fn.yiiGridView.getSelection(id);}",
+
 )); ?>

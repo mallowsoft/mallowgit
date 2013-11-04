@@ -7,10 +7,18 @@ class ProfomoController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-
+    public function actions()
+    {
+        return array(
+                     'quote'=>array(
+                                    'class'=>'CWebServiceAction',
+                                    ),
+                     );
+    }
 	/**
 	 * @return array action filters
 	 */
+
 	public function filters()
 	{
 		return array(
@@ -28,8 +36,8 @@ class ProfomoController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'actions'=>array('index','view','web'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
@@ -37,7 +45,7 @@ class ProfomoController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -170,5 +178,17 @@ class ProfomoController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    /**
+     * @param string the symbol of the stock
+     * @return float the stock price
+     * @soap
+     */
+    public function getPrice($symbol)
+    {
+        $prices=array('IBM'=>100, 'GOOGLE'=>350);
+        return isset($prices[$symbol])?$prices[$symbol]:0;
+        //...return stock price for $symbol
+    }
 }
 ?>

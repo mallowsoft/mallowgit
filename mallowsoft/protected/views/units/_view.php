@@ -16,6 +16,4 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('unit_code')); ?>:</b>
 	<?php echo CHtml::encode($data->unit_code); ?>
 	<br />
-
-
 </div>

@@ -26,4 +26,5 @@ $this->menu=array(
 		'currency_code',
 		'currency_id',
 	),
-)); ?>
+));
+?>

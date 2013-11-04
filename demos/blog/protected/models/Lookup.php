@@ -74,4 +74,3 @@ class Lookup extends CActiveRecord
 			self::$_items[$type][$model->code]=$model->name;
 	}
 }
-?>

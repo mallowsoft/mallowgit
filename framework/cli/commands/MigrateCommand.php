@@ -118,7 +118,7 @@ class MigrateCommand extends CConsoleCommand
 
 	public function actionDown($args)
 	{
-		$step=isset($args[0]) ? (int)$args[0] : 1;
+		 $step=isset($args[0]) ? (int)$args[0] : 1;
 		if($step<1)
 		{
 			echo "Error: The step parameter must be greater than 0.\n";
@@ -131,7 +131,6 @@ class MigrateCommand extends CConsoleCommand
 			return 0;
 		}
 		$migrations=array_keys($migrations);
-
 		$n=count($migrations);
 		echo "Total $n ".($n===1 ? 'migration':'migrations')." to be reverted:\n";
 		foreach($migrations as $migration)
@@ -147,8 +146,9 @@ class MigrateCommand extends CConsoleCommand
 					echo "\nMigration failed. All later migrations are canceled.\n";
 					return 2;
 				}
+                else
+                    echo "\nMigrated down successfully.\n";
 			}
-			echo "\nMigrated down successfully.\n";
 		}
 	}
 
@@ -179,6 +179,7 @@ class MigrateCommand extends CConsoleCommand
 			foreach($migrations as $migration)
 			{
 				if($this->migrateDown($migration)===false)
+                    
 				{
 					echo "\nMigration failed. All later migrations are canceled.\n";
 					return 2;
@@ -555,6 +556,10 @@ EOD;
 			return file_get_contents(Yii::getPathOfAlias($this->templateFile).'.php');
 		else
 			return <<<EOD
+            
+            }
+    ?>
+
 <?php
 
 class {ClassName} extends CDbMigration
@@ -583,3 +588,4 @@ class {ClassName} extends CDbMigration
 EOD;
 	}
 }
+    ?>

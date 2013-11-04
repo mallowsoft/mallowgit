@@ -197,3 +197,4 @@ abstract class CGridColumn extends CComponent
 		echo $this->grid->blankDisplay;
 	}
 }
+?>

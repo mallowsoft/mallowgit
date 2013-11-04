@@ -1,5 +1,5 @@
 <?php
-
+    date_default_timezone_set('UTC');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 

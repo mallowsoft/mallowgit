@@ -20,6 +20,4 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('currency_code')); ?>:</b>
 	<?php echo CHtml::encode($data->currency_code); ?>
 	<br />
-
-
 </div>

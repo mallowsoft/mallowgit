@@ -86,3 +86,4 @@ class CListPager extends CBasePager
 			return $page+1;
 	}
 }
+?>

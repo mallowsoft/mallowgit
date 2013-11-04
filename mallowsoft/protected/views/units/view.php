@@ -3,7 +3,7 @@
 /* @var $model Units */
 ?>
 
-<h1>View Units #<?php echo $model->unit_id; ?></h1>
+<h1>View Units <?php echo $model->unit_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

@@ -2,7 +2,6 @@
 /* @var $this AgentController */
 /* @var $model Agent */
 ?>
-
 <div id="titlebar">
 <div class="listtitle">New Agent Entry</div>
 </div>

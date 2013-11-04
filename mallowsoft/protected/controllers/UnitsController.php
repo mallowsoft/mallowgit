@@ -29,15 +29,15 @@ class UnitsController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -134,7 +134,8 @@ class UnitsController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Units('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();
+        // clear any default values
 		if(isset($_GET['Units']))
 			$model->attributes=$_GET['Units'];
 
@@ -170,4 +171,19 @@ class UnitsController extends Controller
 			Yii::app()->end();
 		}
 	}
+    public function isActive($routes = array())
+    {
+        $routeCurrent = '';
+        if ($this->module !== null) {
+            $routeCurrent .= sprintf('%s/', $this->module->id);
+        }
+        $routeCurrent .= sprintf('%s/%s', $this->id, $this->action->id);
+        foreach ($routes as $route) {
+            $pattern = sprintf('~%s~', preg_quote($route));
+            if (preg_match($pattern, $routeCurrent)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

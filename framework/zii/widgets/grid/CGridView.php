@@ -538,7 +538,6 @@ class CGridView extends CBaseListView
 		$data=$this->dataProvider->getData();
 		$n=count($data);
 		echo "<tbody>\n";
-
 		if($n>0)
 		{
 			for($row=0;$row<$n;++$row)
@@ -583,7 +582,6 @@ class CGridView extends CBaseListView
 			else
 				$htmlOptions['class']=$class;
 		}
-
 		echo CHtml::openTag('tr', $htmlOptions)."\n";
 		foreach($this->columns as $column)
 			$column->renderDataCell($row);

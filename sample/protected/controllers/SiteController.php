@@ -106,4 +106,35 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+    public function actionTestManyToMany()
+    {
+        $projects = Project::model()->findAll();
+        $users = User::model()->findAll();
+        
+        foreach($projects as $project)
+        {
+            echo $project->name . " has " . count($project->users) . " users. They are:<br />";
+            foreach($project->users as $user)
+            {
+                echo $user->username . "<br />";
+            }
+            echo "<br />";
+        }
+        
+        echo "<hr />";
+        
+        foreach($users as $user)
+        {
+            echo $user->username . " is associated with " . count($user->projects) . " projects. They are:<br />";
+            
+            echo $user->username . "username" . count($user->username) . "working in this project";
+                        
+            foreach($user->projects as $project)
+            {
+                echo $project->name . "<br />";
+            }
+            echo "<br />";
+        }
+    }
 }
+?>

@@ -42,12 +42,15 @@ class Agent extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('agent_name, address, city, country, phone_primary, phone_alternative, email, agent_code', 'safe'),
-            array('phone_primary, phone_alternative', 'numerical', 'integerOnly'=>true),
-            array('email', 'email','checkMX'=>true),
+            array('agent_name,agent_code','required','message'=>'{attribute} Cannnot be Empty'),
+			array('agent_name, agent_code, address, city, country, phone_primary, phone_alternative, email, agent_id','safe'),
+//            array('phone_primary, phone_alternative', 'numerical', 'integerOnly'=>true),
+            array('phone_primary,phone_alternative,agent_commission','default','setOnEmpty'=>true),
+            array('email', 'email'),
+                     array('agent_commission','numerical','message'=>'Please enter numerical value'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('agent_name, address, city, country, phone_primary, phone_alternative, email, agent_code, agent_id', 'safe', 'on'=>'search'),
+//			array('agent_name, address, city, country, phone_primary, phone_alternative, email, agent_code, agent_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,14 +71,16 @@ class Agent extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'agent_name' => 'Agent Name',
-			'address' => 'Address',
-			'city' => 'City',
-			'country' => 'Country',
-			'phone_primary' => 'Phone Primary',
-			'phone_alternative' => 'Phone Alternative',
-			'email' => 'Email',
-			'agent_code' => 'Agent Code',
+			'agent_name' => 'Agent Name :',
+			'address' => 'Address :',
+            'agent_commission' => 'Agent Commission :',
+			'city' => 'City :',
+			'country' => 'Country :',
+			'phone_primary' => 'Phone (Primary) :',
+			'phone_alternative' => 'Phone (Alternative) :',
+			'email' => 'Email :',
+            'pincode' => 'Pincode :',
+			'agent_code' => 'Agent Code :',
 			'agent_id' => 'Agent',
 		);
 	}
@@ -103,6 +108,12 @@ class Agent extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort' => array(
+                            'defaultOrder' => 'agent_name ASC',  // this is it.
+                            ),
+            'pagination' => array(
+                                  'pageSize' => 10,
+                                  ),
 		));
 	}
 }

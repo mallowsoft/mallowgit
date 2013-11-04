@@ -37,6 +37,7 @@ class DeliveryTerms extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('delivery_terms, delivery_terms_code','required','message'=>'{attribute} Cannnot be Empty'),
 			array('information, delivery_terms, delivery_terms_code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -61,10 +62,10 @@ class DeliveryTerms extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'information' => 'Information',
-			'delivery_terms' => 'Delivery Terms',
-			'delivery_terms_code' => 'Delivery Terms Code',
-			'delivery_terms_id' => 'Delivery Terms',
+			'information' => 'Information :',
+			'delivery_terms' => 'Delivery Terms :',
+			'delivery_terms_code' => 'Terms Code :',
+			'delivery_terms_id' => 'Delivery Terms :',
 		);
 	}
 
@@ -86,6 +87,12 @@ class DeliveryTerms extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort' => array(
+                            'defaultOrder' => 'delivery_terms_code ASC',  // this is it.
+                            ),
+            'pagination' => array(
+                                  'pageSize' => 10,
+                                  ),
 		));
 	}
 }

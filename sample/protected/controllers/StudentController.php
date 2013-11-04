@@ -28,8 +28,8 @@ class StudentController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'actions'=>array('index','view','api'),
+				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
@@ -37,7 +37,7 @@ class StudentController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -170,4 +170,11 @@ class StudentController extends Controller
 			Yii::app()->end();
 		}
 	}
+    public function actionApi()
+	{
+        $client=new SoapClient('http://localhost/yii/sample/index.php/profomo/quote');
+        echo $client->getPrice('GOOGLE');
+    }
+
 }
+    ?>
